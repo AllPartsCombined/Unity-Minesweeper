@@ -9,6 +9,7 @@ using System;
 public class MultifunctionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public enum State { Default, Hover, Clicked }
+    public bool interactable = true;
     public PointerEventData.InputButton buttonType;
     public Image image;
     [Header("Sprite Modes")]
@@ -30,6 +31,11 @@ public class MultifunctionButton : MonoBehaviour, IPointerEnterHandler, IPointer
     private void Update()
     {
         previousMouseHeld = mouseHeld;
+
+        if (!interactable)
+        {
+            return;
+        }
 
         int toCheck = 0;
         switch (buttonType)
@@ -62,19 +68,23 @@ public class MultifunctionButton : MonoBehaviour, IPointerEnterHandler, IPointer
 
     private void HandleClickUp()
     {
+        if (!interactable)
+            return;
         SetState(State.Hover);
         OnClickUp.Invoke();
     }
 
     private void HandleClickDown()
     {
+        if (!interactable)
+            return;
         SetState(State.Clicked);
         OnClickDown.Invoke();
     }
 
     private void SetState(State newState)
     {
-        if (newState == state)
+        if (newState == state || !interactable)
             return;
         state = newState;
         if (!setSprite)
