@@ -29,10 +29,11 @@ public class Timer : MonoBehaviour
         StartCoroutine(TimerCoroutine());
     }
 
-    public void StopTimer()
+    public void StopTimer(bool clear = false)
     {
         timerActive = false;
-        UpdateTime(0);
+        if(clear)
+            UpdateTime(0);
         StopAllCoroutines();
     }
 

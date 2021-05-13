@@ -11,7 +11,80 @@ public class MinefieldUI : MonoBehaviour
     public GameObject spacePrefab;
     public RectTransform minefieldParent;
 
+    private int clearedSpaces = 0;
+
     private List<Space> spaces = new List<Space>();
+
+    public event System.Action OnWin;
+    public event System.Action OnLose;
+    public event System.Action OnInit;
+
+    public List<Space> Spaces
+    {
+        get => spaces;
+    }
+
+    public int numCols;
+    public int numRows;
+    public int numMines;
+    public bool gameStarted;
+
+    public int WinCount
+    {
+        get => (numCols * numRows) - numMines;
+    }
+
+    private void Start()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+        gameStarted = false;
+        numCols = 30;
+        numRows = 16;
+        numMines = 50;
+        InitializeMinefield();
+        Timer.Instance.StopTimer(true);
+        if (OnInit != null)
+            OnInit();
+    }
+
+    public void StartGame()
+    {
+        gameStarted = true;
+        Timer.Instance.StartTimer();
+    }
+
+    //Convert from an index to row, col format
+    public Vector2Int ind2rc(int ind)
+    {
+        return new Vector2Int(Mathf.FloorToInt(ind / numCols), ind % numCols);
+    }
+
+    //Convert from a row, col pair to index format
+    public int rc2ind(int row, int col)
+    {
+        if (row < 0 || col < 0 || row >= numRows || col >= numCols)
+            return -1;
+        return (row) * numCols + col;
+    }
+
+    public List<int> GetRandomMineIndices(int excluding = -1)
+    {
+        List<int> l = new List<int>();
+        for (int i = 0; i < numMines; i++)
+        {
+            int randomNumber = -1;
+            while (randomNumber < 0 || l.Contains(randomNumber) || randomNumber == excluding)
+            {
+                randomNumber = UnityEngine.Random.Range(0, numCols * numRows);
+            }
+            l.Add(randomNumber);
+        }
+        return l;
+    }
 
     private void Awake()
     {
@@ -31,10 +104,10 @@ public class MinefieldUI : MonoBehaviour
 
         spaces.Clear();
         GridLayoutGroup grid = minefieldParent.GetComponent<GridLayoutGroup>();
-        minefieldParent.sizeDelta = new Vector2(GameController.numCols * grid.cellSize.x + grid.padding.left + grid.padding.right,
-            GameController.numRows * grid.cellSize.y + grid.padding.top + grid.padding.bottom);
+        minefieldParent.sizeDelta = new Vector2(numCols * grid.cellSize.x + grid.padding.left + grid.padding.right,
+            numRows * grid.cellSize.y + grid.padding.top + grid.padding.bottom);
 
-        for (int i = 0; i < GameController.numRows * GameController.numCols; i++)
+        for (int i = 0; i < numRows * numCols; i++)
         {
             GameObject spaceGO = Instantiate(spacePrefab, minefieldParent);
             Space space = spaceGO.GetComponent<Space>();
@@ -58,13 +131,13 @@ public class MinefieldUI : MonoBehaviour
 
     public void HandleClick(int ind)
     {
-        Vector2Int rc = GameController.ind2rc(ind);
+        Vector2Int rc = ind2rc(ind);
         Debug.Log("Clicked Space: " + ind + ". (" + rc.x + ", " + rc.y + ").");
         // Initialize the field if it's the first time:
-        if (!GameController.gameStarted)
+        if (!gameStarted)
         {
-            GameController.StartGame();
-            var randomMineIndices = GameController.GetRandomMineIndices(ind);
+            StartGame();
+            var randomMineIndices = GetRandomMineIndices(ind);
             foreach (int index in randomMineIndices)
             {
                 spaces[index].mine = true;
@@ -88,13 +161,16 @@ public class MinefieldUI : MonoBehaviour
             Lose(ind);
         }
 
-        //if length(goodInds) == totalGood
-        //    Win;
-        //    end
+
+        if (clearedSpaces == WinCount)
+        {
+            Win();
+        }
     }
 
     private void Lose(int explodedIndex)
     {
+        Timer.Instance.StopTimer();
         foreach (var space in spaces)
         {
             if (space.mine)
@@ -107,6 +183,22 @@ public class MinefieldUI : MonoBehaviour
             else
                 space.SetMode(Space.SpaceMode.Dead);
         }
+        if (OnLose != null)
+            OnLose();
+    }
+
+    private void Win()
+    {
+        Timer.Instance.StopTimer();
+        foreach (var space in spaces)
+        {
+            if (space.mine)
+            {
+                space.SetMode(Space.SpaceMode.Flagged);
+            }
+        }
+        if (OnWin != null)
+            OnWin();
     }
 
     public void SurroundCount(int ind)
@@ -114,15 +206,15 @@ public class MinefieldUI : MonoBehaviour
 
         if (ind != -1 && (spaces[ind].Mode == Space.SpaceMode.Active || spaces[ind].Mode == Space.SpaceMode.Question))
         {
-            Vector2Int rc = GameController.ind2rc(ind);
-            int bottomLeft = GameController.rc2ind(rc.x + 1, rc.y - 1);
-            int middleLeft = GameController.rc2ind(rc.x, rc.y - 1);
-            int topLeft = GameController.rc2ind(rc.x - 1, rc.y - 1);
-            int bottomMiddle = GameController.rc2ind(rc.x + 1, rc.y);
-            int topMiddle = GameController.rc2ind(rc.x - 1, rc.y);
-            int bottomRight = GameController.rc2ind(rc.x + 1, rc.y + 1);
-            int middleRight = GameController.rc2ind(rc.x, rc.y + 1);
-            int topRight = GameController.rc2ind(rc.x - 1, rc.y + 1);
+            Vector2Int rc = ind2rc(ind);
+            int bottomLeft = rc2ind(rc.x + 1, rc.y - 1);
+            int middleLeft = rc2ind(rc.x, rc.y - 1);
+            int topLeft = rc2ind(rc.x - 1, rc.y - 1);
+            int bottomMiddle = rc2ind(rc.x + 1, rc.y);
+            int topMiddle = rc2ind(rc.x - 1, rc.y);
+            int bottomRight = rc2ind(rc.x + 1, rc.y + 1);
+            int middleRight = rc2ind(rc.x, rc.y + 1);
+            int topRight = rc2ind(rc.x - 1, rc.y + 1);
             int count = 0;
             count += CheckSpace(bottomLeft);
             count += CheckSpace(middleLeft);
@@ -149,6 +241,7 @@ public class MinefieldUI : MonoBehaviour
                 spaces[ind].SetNumber(count);
                 //DrawNewSpot(ind, num2str(count), GetColor(count));
             }
+            clearedSpaces++;
         }
     }
 
