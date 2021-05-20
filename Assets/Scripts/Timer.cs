@@ -11,6 +11,11 @@ public class Timer : MonoBehaviour
     private int time = 0;
     private bool timerActive = false;
 
+    public int Time
+    {
+        get => time;
+    }
+
     public event Action<int> OnTimeUpdated;
 
     private void Awake()

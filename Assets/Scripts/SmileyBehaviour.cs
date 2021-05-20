@@ -14,9 +14,9 @@ public class SmileyBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Start()
     {
         Initialize();
-        MinefieldUI.Instance.OnWin += HandleWin;
-        MinefieldUI.Instance.OnLose += HandleDead;
-        MinefieldUI.Instance.OnInit += Initialize;
+        GameController.Instance.OnWin += HandleWin;
+        GameController.Instance.OnLose += HandleDead;
+        GameController.Instance.OnInit += Initialize;
     }
 
     private void Update()

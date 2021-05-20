@@ -4,30 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MinefieldUI : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    public static MinefieldUI Instance;
+    public enum Size { Beginner, Intermediate, Expert, Custom }
+    public static GameController Instance;
 
     public GameObject spacePrefab;
     public RectTransform minefieldParent;
+    public GameObject blocker;
+
+    public int numCols;
+    public int numRows;
+    public int numMines;
+
+    public Size size;
+
+    [HideInInspector]
+    public bool marksEnabled { get; private set; } = true;
 
     private int clearedSpaces = 0;
+    private bool gameStarted;
 
     private List<Space> spaces = new List<Space>();
 
     public event System.Action OnWin;
     public event System.Action OnLose;
     public event System.Action OnInit;
+    public event System.Action<HighScore> OnNewHighScore;
 
     public List<Space> Spaces
     {
         get => spaces;
     }
-
-    public int numCols;
-    public int numRows;
-    public int numMines;
-    public bool gameStarted;
 
     public int WinCount
     {
@@ -36,15 +44,51 @@ public class MinefieldUI : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(DelayedInitialize());
+    }
+
+    IEnumerator DelayedInitialize()
+    {
+        yield return new WaitForEndOfFrame();
+        Initialize();
+    }
+
+    public void SetToBeginner()
+    {
+        SetSize(9, 9, 10);
+        size = Size.Beginner;
+    }
+
+    public void SetToIntermediate()
+    {
+        SetSize(16, 16, 40);
+        size = Size.Intermediate;
+    }
+
+    public void SetToExpert()
+    {
+        SetSize(30, 16, 99);
+        size = Size.Expert;
+    }
+
+    public void SetToCustom()
+    {
+        size = Size.Custom;
+    }
+
+    public void SetSize(int cols, int rows, int mines)
+    {
+        numCols = cols;
+        numRows = rows;
+        numMines = mines;
         Initialize();
     }
 
     public void Initialize()
     {
         gameStarted = false;
-        numCols = 30;
-        numRows = 16;
-        numMines = 50;
+        blocker.SetActive(false);
+        clearedSpaces = 0;
         InitializeMinefield();
         Timer.Instance.StopTimer(true);
         if (OnInit != null)
@@ -92,6 +136,28 @@ public class MinefieldUI : MonoBehaviour
             Instance = this;
         else
             Destroy(this.gameObject);
+        size = (Size)PlayerPrefs.GetInt("size", 0);
+        marksEnabled = PlayerPrefs.GetInt("marks", 1) == 1;
+        switch (size)
+        {
+            case Size.Beginner:
+                SetToBeginner();
+                break;
+            case Size.Intermediate:
+                SetToIntermediate();
+                break;
+            case Size.Expert:
+                SetToExpert();
+                break;
+            case Size.Custom:
+                break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("size", (int)size);
+        PlayerPrefs.SetInt("marks", marksEnabled ? 1 : 0);
     }
 
     public void InitializeMinefield()
@@ -116,6 +182,12 @@ public class MinefieldUI : MonoBehaviour
             space.Init();
             spaces.Add(space);
         }
+        blocker.transform.SetAsLastSibling();
+    }
+
+    public void ToggleMarksEnabled()
+    {
+        marksEnabled = !marksEnabled;
     }
 
     public int CheckSpace(int ind)
@@ -183,6 +255,7 @@ public class MinefieldUI : MonoBehaviour
             else
                 space.SetMode(Space.SpaceMode.Dead);
         }
+        blocker.SetActive(true);
         if (OnLose != null)
             OnLose();
     }
@@ -197,6 +270,8 @@ public class MinefieldUI : MonoBehaviour
                 space.SetMode(Space.SpaceMode.Flagged);
             }
         }
+        blocker.SetActive(true);
+        HighScoreCheck();
         if (OnWin != null)
             OnWin();
     }
@@ -245,4 +320,84 @@ public class MinefieldUI : MonoBehaviour
         }
     }
 
+    public HighScore GetHighScore(Size s)
+    {
+        int t = PlayerPrefs.GetInt(GetTimePref(s), 999);
+        string n = PlayerPrefs.GetString(GetNamePref(s), "-");
+        return new HighScore(s, t, n);
+    }
+
+    public void SetHighScore(Size s, int t, string n)
+    {
+        PlayerPrefs.SetInt(GetTimePref(s), t);
+        PlayerPrefs.SetString(GetNamePref(s), n);
+    }
+
+    public void SetHighScore(HighScore hs)
+    {
+        SetHighScore(hs.size, hs.time, hs.name);
+    }
+
+    public void HighScoreCheck()
+    {
+        if (size == Size.Custom)
+            return;
+        var hs = GetHighScore(size);
+        if (Timer.Instance.Time < hs.time)
+        {
+            var newHs = new HighScore(size, Timer.Instance.Time, "");
+            if (OnNewHighScore != null)
+                OnNewHighScore(newHs);
+        }
+    }
+
+    public string GetTimePref(Size s)
+    {
+        switch (s)
+        {
+            case Size.Beginner:
+                return "BeginnerTime";
+            case Size.Intermediate:
+                return "IntermediateTime";
+            case Size.Expert:
+                return "ExpertTime";
+            default:
+                return "";
+        }
+    }
+
+    public string GetNamePref(Size s)
+    {
+        switch (s)
+        {
+            case Size.Beginner:
+                return "BeginnerName";
+            case Size.Intermediate:
+                return "IntermediateName";
+            case Size.Expert:
+                return "ExpertName";
+            default:
+                return "";
+        }
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+}
+
+[System.Serializable]
+public class HighScore
+{
+    public GameController.Size size;
+    public int time;
+    public string name;
+
+    public HighScore(GameController.Size s, int t, string n)
+    {
+        size = s;
+        time = t;
+        name = n;
+    }
 }

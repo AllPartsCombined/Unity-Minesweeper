@@ -720,7 +720,7 @@ MonoBehaviour:
   defaultSprite: {fileID: -2675965526950890060, guid: 1967a10a80535ba449a38c7fda7dfaa3,
     type: 3}
   hoverSprite: {fileID: 0}
-  clickedSprite: {fileID: 452151122092843922, guid: 1967a10a80535ba449a38c7fda7dfaa3,
+  clickedSprite: {fileID: 7945601835409037144, guid: 1967a10a80535ba449a38c7fda7dfaa3,
     type: 3}
   OnClickDown:
     m_PersistentCalls:

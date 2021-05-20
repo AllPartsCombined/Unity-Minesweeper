@@ -104,7 +104,10 @@ public class Space : MonoBehaviour
                 SetMode(SpaceMode.Flagged);
                 break;
             case SpaceMode.Flagged:
-                SetMode(SpaceMode.Question);
+                if(GameController.Instance.marksEnabled)
+                    SetMode(SpaceMode.Question);
+                else
+                    SetMode(SpaceMode.Active);
                 break;
             case SpaceMode.Question:
                 SetMode(SpaceMode.Active);
@@ -122,7 +125,7 @@ public class Space : MonoBehaviour
 
     public void Init()
     {
-        leftClickButton.OnClickUp.AddListener(() => MinefieldUI.Instance.HandleClick(index));
+        leftClickButton.OnClickUp.AddListener(() => GameController.Instance.HandleClick(index));
     }
 }
 

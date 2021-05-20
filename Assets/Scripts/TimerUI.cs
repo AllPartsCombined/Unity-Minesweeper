@@ -15,6 +15,7 @@ public class TimerUI : MonoBehaviour
 
     private void HandleTimeUpdated(int time)
     {
+        time = Mathf.Clamp(time, 0, 999);
         text.text = time.ToString("000");
     }
 }

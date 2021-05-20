@@ -9,8 +9,8 @@ public class MineCountUI : MonoBehaviour
 
     public int GetCount()
     {
-        int count = MinefieldUI.Instance.numMines;
-        foreach (var space in MinefieldUI.Instance.Spaces)
+        int count = GameController.Instance.numMines;
+        foreach (var space in GameController.Instance.Spaces)
         {
             if (space.Mode == Space.SpaceMode.Flagged)
                 count--;
