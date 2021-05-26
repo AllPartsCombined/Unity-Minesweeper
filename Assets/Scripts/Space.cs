@@ -20,7 +20,7 @@ public class Space : MonoBehaviour
     public Image explodedImage;
     public Text numberText;
     public Text questionMarkText;
-    public NumberColorMapping numberColorMapping;
+    public NumberStyleMapping numberStyleMapping;
 
     public SpaceMode Mode
     {
@@ -119,7 +119,12 @@ public class Space : MonoBehaviour
     {
         numberText.gameObject.SetActive(number != 0);
         numberText.text = number.ToString();
-        numberText.color = numberColorMapping.GetColor(number);
+        var styleElement = numberText.GetComponent<StyleElementText>();
+        if (styleElement != null)
+        {
+            styleElement.id = numberStyleMapping.GetStyle(number);
+            styleElement.Apply();
+        }
         SetMode(SpaceMode.Checked);
     }
 
@@ -130,38 +135,38 @@ public class Space : MonoBehaviour
 }
 
 [System.Serializable]
-public class NumberColorMapping
+public class NumberStyleMapping
 {
-    public Color oneColor = Color.blue;
-    public Color twoColor = Color.green;
-    public Color threeColor = Color.red;
-    public Color fourColor = Color.blue;
-    public Color fiveColor = Color.red;
-    public Color sixColor = Color.cyan;
-    public Color sevenColor = Color.black;
-    public Color eightColor = Color.gray;
+    public string oneStyle = "Number1";
+    public string twoStyle = "Number2";
+    public string threeStyle = "Number3";
+    public string fourStyle = "Number4";
+    public string fiveStyle = "Number5";
+    public string sixStyle = "Number6";
+    public string sevenStyle = "Number7";
+    public string eightStyle = "Number8";
 
-    public Color GetColor(int number)
+    public string GetStyle(int number)
     {
         switch (number)
         {
             case 1:
-                return oneColor;
+                return oneStyle;
             case 2:
-                return twoColor;
+                return twoStyle;
             case 3:
-                return threeColor;
+                return threeStyle;
             case 4:
-                return fourColor;
+                return fourStyle;
             case 5:
-                return fiveColor;
+                return fiveStyle;
             case 6:
-                return sixColor;
+                return sixStyle;
             case 7:
-                return sevenColor;
+                return sevenStyle;
             case 8:
-                return eightColor;
+                return eightStyle;
         }
-        return Color.white;
+        return "Number1";
     }
 }

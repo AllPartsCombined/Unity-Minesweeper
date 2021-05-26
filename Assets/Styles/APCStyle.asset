@@ -1,0 +1,275 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d648c8adf81f04baf9138c356317b5, type: 3}
+  m_Name: APCStyle
+  m_EditorClassIdentifier: 
+  imageAttributes:
+  - id: 7Seg_Background
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 0
+    sprite: {fileID: 0}
+  - id: Background_Pop
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 6383131152849926311, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Background_Sunk
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 4928290490119627253, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Smiley_Default
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 6290266155201626194, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Smiley_Clicked
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -2914126869973362617, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Smiley_Cool
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 6187525277250295125, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Smiley_Dead
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -2951837383207261361, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Space_Clear
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -8425413441910158088, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Space_Exploded
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -4647940559736184031, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Mine
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -3557076904772568540, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: X
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 8128193675895726664, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  - id: Button_Image_1
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 6383131152849926311, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  textAttributes:
+  - id: 7Seg_Text
+    setColor: 1
+    color: {r: 0.40000004, g: 0.9333334, b: 0.56078434, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: 7Seg_Text_Faded
+    setColor: 1
+    color: {r: 0.40000004, g: 0.9333334, b: 0.56078434, a: 0.105882354}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_25
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_27
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_29
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_30
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_40
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Question_Mark
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number1
+    setColor: 1
+    color: {r: 0, g: 0.8588236, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number2
+    setColor: 1
+    color: {r: 0, g: 1, b: 0.5921569, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number3
+    setColor: 1
+    color: {r: 1, g: 0, b: 0.564044, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number4
+    setColor: 1
+    color: {r: 0.6039216, g: 0, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number5
+    setColor: 1
+    color: {r: 0.95294124, g: 1, b: 0, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number6
+    setColor: 1
+    color: {r: 0, g: 1, b: 0.8313726, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number7
+    setColor: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Number8
+    setColor: 1
+    color: {r: 1, g: 0.6862745, b: 0, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  buttonAttributes:
+  - id: Button_1
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setHighlightedSprite: 0
+    highlightedSprite: {fileID: 0}
+    setPressedSprite: 1
+    pressedSprite: {fileID: 4928290490119627253, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+    setSelectedSprite: 0
+    selectedSprite: {fileID: 0}
+    setDisabledSprite: 0
+    disabledSprite: {fileID: 0}
+    setNormalColor: 0
+    normalColor: {r: 0, g: 0, b: 0, a: 0}
+    setHighlightedColor: 0
+    highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    setPressedColor: 0
+    pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    setSelectedColor: 0
+    selectedColor: {r: 0, g: 0, b: 0, a: 0}
+    setDisabledColor: 0
+    disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  - id: Button_2
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setHighlightedSprite: 0
+    highlightedSprite: {fileID: 0}
+    setPressedSprite: 1
+    pressedSprite: {fileID: -2154554408015561881, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+    setSelectedSprite: 0
+    selectedSprite: {fileID: 0}
+    setDisabledSprite: 0
+    disabledSprite: {fileID: 0}
+    setNormalColor: 0
+    normalColor: {r: 0, g: 0, b: 0, a: 0}
+    setHighlightedColor: 0
+    highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    setPressedColor: 0
+    pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    setSelectedColor: 0
+    selectedColor: {r: 0, g: 0, b: 0, a: 0}
+    setDisabledColor: 0
+    disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  multifunctionButtonAttributes:
+  - id: Button_Mine
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: 6383131152849926311, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+    setDefaultSprite: 1
+    defaultSprite: {fileID: 6383131152849926311, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+    setHoverSprite: 0
+    hoverSprite: {fileID: 0}
+    setClickedSprite: 1
+    clickedSprite: {fileID: -8425413441910158088, guid: 92edb7016d20ba54e8a970398739112c,
+      type: 3}
+  animatedImageAttributes:
+  - id: Flag
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    setSprite: 1
+    sprite: {fileID: -4403357489243311909, guid: c1f9c326ab1e9bb4daa17fb4d63c575d,
+      type: 3}
+    setSprites: 1
+    sprites:
+    - {fileID: -4403357489243311909, guid: c1f9c326ab1e9bb4daa17fb4d63c575d, type: 3}
+    - {fileID: 7843775760161308239, guid: c1f9c326ab1e9bb4daa17fb4d63c575d, type: 3}
+    - {fileID: -7771445014686392184, guid: c1f9c326ab1e9bb4daa17fb4d63c575d, type: 3}
+    - {fileID: 2131344692714674238, guid: c1f9c326ab1e9bb4daa17fb4d63c575d, type: 3}
+    - {fileID: 6665000692538282409, guid: c1f9c326ab1e9bb4daa17fb4d63c575d, type: 3}
+    setFPS: 0
+    fps: 0

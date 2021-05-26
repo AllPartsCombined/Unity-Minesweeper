@@ -90,14 +90,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d33fd2b2b79d144890c1901555e0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 1
+  buttonType: 0
   image: {fileID: 74190629789720691}
+  setSprite: 1
   defaultSprite: {fileID: 21300000, guid: 48a5441592bad974abb8e4b0219cf8c8, type: 3}
   hoverSprite: {fileID: 0}
   clickedSprite: {fileID: 21300000, guid: fd3db2d4888844f499f19d621e888eb4, type: 3}
-  OnLeftClick:
+  OnClickDown:
     m_PersistentCalls:
       m_Calls: []
-  OnRightClick:
+  OnClickUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClickHeld:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-2998631040018454741
@@ -113,7 +119,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  button: {fileID: 0}
+  mine: 0
+  leftClickButton: {fileID: 0}
+  rightClickButton: {fileID: 0}
+  checkedImage: {fileID: 0}
+  flag: {fileID: 0}
+  mineImage: {fileID: 0}
+  xImage: {fileID: 0}
+  explodedImage: {fileID: 0}
+  numberText: {fileID: 0}
+  questionMarkText: {fileID: 0}
+  numberColorMapping:
+    oneColor: {r: 0, g: 0, b: 1, a: 1}
+    twoColor: {r: 0, g: 1, b: 0, a: 1}
+    threeColor: {r: 1, g: 0, b: 0, a: 1}
+    fourColor: {r: 0, g: 0, b: 1, a: 1}
+    fiveColor: {r: 1, g: 0, b: 0, a: 1}
+    sixColor: {r: 0, g: 1, b: 1, a: 1}
+    sevenColor: {r: 0, g: 0, b: 0, a: 1}
+    eightColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &74190631159529501
 GameObject:
   m_ObjectHideFlags: 0
