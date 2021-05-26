@@ -78,7 +78,7 @@ MonoBehaviour:
     setSprite: 1
     sprite: {fileID: 9177049080341219606, guid: 1967a10a80535ba449a38c7fda7dfaa3,
       type: 3}
-  - id: Button_Inage_1
+  - id: Button_Image_1
     setColor: 0
     color: {r: 0, g: 0, b: 0, a: 0}
     setSprite: 1
@@ -193,6 +193,13 @@ MonoBehaviour:
   - id: Number8
     setColor: 1
     color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
+  - id: Arial_29_Input
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 1}
     setFont: 0
     font: {fileID: 0}
     setFontSize: 0

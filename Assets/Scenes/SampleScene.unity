@@ -2403,7 +2403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdcd0a9ce36bdb45bc7fba0a15fbc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Arial_29
+  id: Arial_29_Input
   text: {fileID: 0}
 --- !u!1 &433701455
 GameObject:
@@ -4451,7 +4451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdcd0a9ce36bdb45bc7fba0a15fbc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Arial_29
+  id: Arial_29_Input
   text: {fileID: 0}
 --- !u!1 &670171570
 GameObject:
@@ -5392,7 +5392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdcd0a9ce36bdb45bc7fba0a15fbc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Arial_29
+  id: Arial_29_Input
   text: {fileID: 0}
 --- !u!1 &740343190
 GameObject:
@@ -5486,7 +5486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbdcd0a9ce36bdb45bc7fba0a15fbc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Arial_29
+  id: Arial_29_Input
   text: {fileID: 0}
 --- !u!1 &756425777
 GameObject:

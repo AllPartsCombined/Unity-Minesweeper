@@ -197,6 +197,13 @@ MonoBehaviour:
     font: {fileID: 0}
     setFontSize: 0
     fontSize: 0
+  - id: Arial_29_Input
+    setColor: 0
+    color: {r: 0, g: 0, b: 0, a: 1}
+    setFont: 0
+    font: {fileID: 0}
+    setFontSize: 0
+    fontSize: 0
   buttonAttributes:
   - id: Button_1
     setColor: 0
