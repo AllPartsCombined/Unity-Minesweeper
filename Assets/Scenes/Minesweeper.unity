@@ -13426,7 +13426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionClip: {fileID: 8300000, guid: 6510c0e98f4e51041b0e0dbab3faefde, type: 3}
-  timeClip: {fileID: 0}
+  timeClip: {fileID: 8300000, guid: 2913238a66a8f40488654cfb4d44d1e5, type: 3}
   source: {fileID: 0}
 --- !u!4 &1821151067
 Transform:

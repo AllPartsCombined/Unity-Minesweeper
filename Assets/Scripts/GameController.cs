@@ -71,6 +71,12 @@ public class GameController : MonoBehaviour
         size = Size.Expert;
     }
 
+    public void SetToCustomFromSaved()
+    {
+        SetSize(PlayerPrefs.GetInt("numCols"), PlayerPrefs.GetInt("numRows"), PlayerPrefs.GetInt("numMines"));
+        size = Size.Custom;
+    }
+
     public void SetToCustom()
     {
         size = Size.Custom;
@@ -150,6 +156,7 @@ public class GameController : MonoBehaviour
                 SetToExpert();
                 break;
             case Size.Custom:
+                SetToCustomFromSaved();
                 break;
         }
     }
@@ -158,6 +165,12 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.SetInt("size", (int)size);
         PlayerPrefs.SetInt("marks", marksEnabled ? 1 : 0);
+        if (size == Size.Custom)
+        {
+            PlayerPrefs.SetInt("numRows", numRows);
+            PlayerPrefs.SetInt("numCols", numCols);
+            PlayerPrefs.SetInt("numMines", numMines);
+        }
     }
 
     public void InitializeMinefield()
@@ -194,7 +207,6 @@ public class GameController : MonoBehaviour
     {
         if (ind != -1)
         {
-            //mines[ind].SetMode(Space.Mode.Checked);
             if (spaces[ind].mine)
                 return 1;
         }
@@ -214,19 +226,13 @@ public class GameController : MonoBehaviour
             {
                 spaces[index].mine = true;
             }
-            //field(ind) = 1; // First hit cannot lose
-            //[sorted, indices] = sort(field);
-            //mineIndices = indices(1:numMines);
-            //started = true;
-            //start(h.timerObject);
         }
 
         // Check for mine:
         if (CheckSpace(ind) == 0)
         {
             SurroundCount(ind); // Check Surrounding spots
-                                //if ishandle(my_h)
-                                //    delete(my_h); % Delete this button if it hasn't been
+
         }
         else
         {
@@ -314,7 +320,6 @@ public class GameController : MonoBehaviour
             else
             {
                 spaces[ind].SetNumber(count);
-                //DrawNewSpot(ind, num2str(count), GetColor(count));
             }
             clearedSpaces++;
         }

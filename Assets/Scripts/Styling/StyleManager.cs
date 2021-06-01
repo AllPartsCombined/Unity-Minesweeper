@@ -16,6 +16,11 @@ public class StyleManager : MonoBehaviour
 
     public event System.Action OnStyleChange;
 
+    public void SetStyle(int styleIndex)
+    {
+        currentStyleIndex = (styleIndex) % stylesheets.Length;
+        OnStyleChange?.Invoke();
+    }
 
     public void NextStyle()
     {
@@ -29,5 +34,11 @@ public class StyleManager : MonoBehaviour
             instance = this;
         else
             Destroy(this.gameObject);
+        SetStyle(PlayerPrefs.GetInt("style"));
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("style", currentStyleIndex);
     }
 }

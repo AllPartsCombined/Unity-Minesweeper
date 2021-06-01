@@ -25,9 +25,9 @@ public class AudioController : MonoBehaviour
         PlayerPrefs.SetInt("sound", soundOn ? 1 : 0);
     }
 
-    private void PlayTimeSound(int obj)
+    private void PlayTimeSound(int time)
     {
-        if (soundOn && timeClip != null)
+        if (soundOn && timeClip != null && time > 0)
             source.PlayOneShot(timeClip);
     }
 
